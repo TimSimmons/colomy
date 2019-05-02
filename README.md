@@ -17,3 +17,31 @@ key phones  value ["+44 1234567","+44 2345678"]
 key alive  value true
 key job.firm  value Grunnings
 ```
+
+## Notes
+
+Event
+- json
+- figures out fields
+
+Database
+- takes Event, examines fields
+- determines Indexes to be (created and) written to 
+- issues writes to each Index
+- gets required Readers from Indexes on query
+- reads from Readers in parallel to assemble query results
+
+Index
+- field name, type
+- has file for `field_name.type`
+- issues writes to end of file
+- open for reading and return Reader
+
+Reader
+- return next id:value
+
+"Why We Built Our Own Distributed Column Store" by Sam Stokes
+https://www.youtube.com/watch?v=tr2KcekX2kk
+
+"Level Up Your Concurrency Skills With Rust"
+https://www.youtube.com/watch?v=oIikwmeGVYY
