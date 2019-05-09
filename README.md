@@ -5,16 +5,36 @@ colomy is nothing
 ```
 $ make run
 cargo run
-   Compiling colomy v0.1.0 (/Users/tim/code/rust/colomy)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.83s
+   Compiling colomy v0.1.0 (/root/code/rust/colomy)
+    Finished dev [unoptimized + debuginfo] target(s) in 1.01s
      Running `target/debug/colomy`
-{"age":43,"alive":true,"job":{"firm":"Grunnings","type":"engineer"},"name":"John Doe","phones":["+44 1234567","+44 2345678"]}
-{"job.type": String("engineer"), "age": Number(43), "name": String("John Doe"), "phones": String("[\"+44 1234567\",\"+44 2345678\"]"), "alive": Bool(true), "job.firm": String("Grunnings")}
+Event {
+    fields: {
+        "job.type": String(
+            "engineer"
+        ),
+        "age": Number(
+            43
+        ),
+        "phones": String(
+            "[\"+44 1234567\",\"+44 2345678\"]"
+        ),
+        "alive": Bool(
+            true
+        ),
+        "name": String(
+            "John Doe"
+        ),
+        "job.firm": String(
+            "Grunnings"
+        )
+    }
+}
 key job.type  value engineer
 key age  value 43
-key name  value John Doe
 key phones  value ["+44 1234567","+44 2345678"]
 key alive  value true
+key name  value John Doe
 key job.firm  value Grunnings
 ```
 
