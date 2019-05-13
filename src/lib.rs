@@ -84,3 +84,61 @@ fn get_values(prefix: String, m: Map<String, Value>) -> HashMap<String, Value> {
 
     return fields;
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use serde_json::json;
+    use serde_json::Value;
+
+    #[test]
+    fn parse_event() {
+        let data = r#"
+        {
+            "name": "John Doe",
+            "age": 43,
+            "alive": true,
+            "phones": [
+                "+44 1234567",
+                "+44 2345678"
+            ],
+            "job": {
+                "type": "engineer",
+                "firm": "Grunnings"
+            }
+        }"#;
+        let e = Event::new(data).unwrap();
+        assert_eq!(json!("John Doe"), e.fields["name"]);
+        assert_eq!(json!(true), e.fields["alive"]);
+        assert_eq!(json!(43), e.fields["age"]);
+        assert_eq!(
+            Value::String(r#"["+44 1234567","+44 2345678"]"#.to_string()),
+            e.fields["phones"]
+        );
+        assert_eq!(json!("Grunnings"), e.fields["job.firm"]);
+        assert_eq!(json!("engineer"), e.fields["job.type"]);
+
+        for (k, v) in &e.fields {
+            match v {
+                Value::Bool(_b) => (),
+                Value::Number(_n) => (),
+                Value::String(_s) => (),
+                _ => panic!("unknown value key: {} value {:?}", k, v),
+            }
+        }
+    }
+
+    #[test]
+    fn parse_invalid_json() {
+        let baddata = r#"
+        [{
+            "name": "John Doe",
+            "age": 43
+        }]"#;
+        let err = Event::new(baddata);
+        match err {
+            Err(_) => (),
+            Ok(_) => panic!("invalid json didn't return an error!"),
+        }
+    }
+}
