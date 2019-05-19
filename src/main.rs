@@ -17,7 +17,7 @@ fn main() {
                 "firm": "Grunnings"
             }
         }"#;
-    let e = colomy::Event::new(data).unwrap();
+    let e = colomy::event::Event::new(data).unwrap();
     println!("{:#?}", e);
     for (k, v) in e.fields {
         match v {
