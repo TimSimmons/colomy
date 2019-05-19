@@ -65,3 +65,9 @@ https://www.youtube.com/watch?v=tr2KcekX2kk
 
 "Level Up Your Concurrency Skills With Rust"
 https://www.youtube.com/watch?v=oIikwmeGVYY
+
+## Reference
+
+Generic fields, generic index, but how to check types on insert? https://gist.github.com/rust-play/01cad47f8d779073392c23ddddabd48d
+
+With an enum and a trait? https://gist.github.com/rust-play/6363a66d6d4f0791ca1f24eff4a031d1
